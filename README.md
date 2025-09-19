@@ -371,7 +371,7 @@ If you encounter the error "No module named 'pyglet'", this only affects the int
 
 This project was developed as a minor project by:
 
-- Name: Y.Sowmya
+- Name: Yeluka Sowmya
 - Course: Computer Science Engineering
 - Institution: VBIT
 - Year: 2025

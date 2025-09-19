@@ -1,6 +1,6 @@
 # Single-Image 3D Reconstruction
 
-A comprehensive pipeline for transforming 2D images into textured 3D models using AI-powered computer vision techniques.
+A comprehensive pipeline for transforming 2D image into textured 3D model using AI-powered computer vision techniques.
 
 ## Project Overview
 

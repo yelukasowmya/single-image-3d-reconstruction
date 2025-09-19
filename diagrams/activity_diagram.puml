@@ -1,0 +1,35 @@
+@startuml
+start
+
+:Segment objects in image;
+if (Segmentation method?) then (maskrcnn)
+  :Segment with Mask R-CNN;
+else (yolo)
+  :Segment with YOLO;
+endif
+
+:Generate depth map from masks;
+
+if (Generate synthetic views?) then (yes)
+  :Generate synthetic views;
+else (no)
+endif
+
+:Create voxel grid;
+if (Multi-view?) then (yes)
+  :Create multi-view voxel grid;
+else (no)
+  :Create single-view voxel grid;
+endif
+
+:Create mesh from voxel grid;
+
+if (Apply texture?) then (yes)
+  :Apply texture to mesh;
+else (no)
+endif
+
+:Save mesh and preview images;
+
+stop
+@enduml

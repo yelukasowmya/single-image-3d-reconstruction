@@ -1,0 +1,24 @@
+@startuml useCaseDiagram
+actor User
+left to right direction
+rectangle {
+  (Provide Input Images)
+  (Run 3D Reconstruction Pipeline)
+  (Choose Segmentation Method)
+  (Choose Depth Model)
+  (Generate Synthetic Views)
+  (Apply Texture Mapping)
+  (Evaluate Reconstruction Quality)
+  (View Output Results)
+}
+
+User --> (Provide Input Images)
+User --> (Run 3D Reconstruction Pipeline)
+User --> (Choose Segmentation Method)
+User --> (Choose Depth Model)
+User --> (Generate Synthetic Views)
+User --> (Apply Texture Mapping)
+User --> (Evaluate Reconstruction Quality)
+User --> (View Output Results)
+
+@enduml

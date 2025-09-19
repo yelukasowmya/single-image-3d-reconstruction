@@ -1,0 +1,38 @@
+@startuml
+actor User
+
+participant "main()" as Main
+participant "Pipe" as Pipe
+participant "Seg" as Seg
+participant "DepthEst" as DepthEst
+participant "ViewSynth" as ViewSynth
+participant "VoxelGrid" as VoxelGrid
+participant "Mesh" as Mesh
+participant "Texture" as Texture
+participant "Eval" as Eval
+
+User -> Main: Run program with args
+Main -> Pipe: Initialize(input_dir, output_dir)
+Main -> Pipe: process_image(img_path, options)
+activate Pipe
+
+Pipe -> Seg: segment_objects(img_path, method)
+Pipe -> DepthEst: generate_depth_map(mask_path, model_type)
+alt generate_views enabled
+Pipe -> ViewSynth: generate_synthetic_views(image_path, depth_path, mask_path, num_views)
+end
+
+Pipe -> VoxelGrid: create_voxel_grid(...)
+Pipe -> Mesh: create_mesh_from_voxels(voxel_grid)
+alt apply_texture enabled
+Pipe -> Texture: apply_texture_to_mesh(mesh, image_path, mask_path)
+end
+
+Pipe -> Mesh: export mesh files (obj, ply, preview)
+
+Pipe --> Main: results
+
+Main -> Eval: evaluate_reconstruction(mesh_path, ground_truth_path)
+
+Main --> User: Output results and reports
+@enduml

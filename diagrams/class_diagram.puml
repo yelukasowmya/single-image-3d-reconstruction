@@ -1,0 +1,44 @@
+@startuml
+class Pipeline3D {
+  - input_dir: str
+  - output_dir: str
+  - depth_dir: str
+  - voxels_dir: str
+  - meshes_dir: str
+  - views_dir: str
+  - eval_dir: str
+  - device: torch.device
+  - view_synthesizer: ViewSynthesizer
+  + __init__(input_dir, output_dir)
+  + segment_objects(img_path, method)
+  + generate_depth_map(img_path, model_type)
+  + generate_synthetic_views(image_path, depth_path, mask_path, num_views)
+  + create_multi_view_voxel_grid(original_image_path, original_depth_path, mask_path, synthetic_views, resolution)
+  + create_voxel_grid(depth_map, mask, resolution)
+  + create_mesh_from_voxels(voxel_grid, threshold)
+  + apply_texture_to_mesh(mesh, image_path, mask_path)
+  + process_image(img_path, segmentation, depth_model, voxel_resolution, apply_texture, generate_views, num_views)
+  + process_all_images(segmentation, depth_model, voxel_resolution, apply_texture, generate_views, num_views)
+  + evaluate_reconstruction(mesh_path, ground_truth_path)
+  + evaluate_depth_estimation(predicted_depth_path, ground_truth_depth_path, mask_path)
+}
+
+class EvaluationMetrics {
+  + chamfer_distance(points_a, points_b)
+  + hausdorff_distance(points_a, points_b)
+  + normal_consistency(mesh_a, mesh_b, samples)
+  + f_score(points_a, points_b, threshold)
+  + iou_voxel(voxel_grid_a, voxel_grid_b, threshold)
+  + depth_accuracy(predicted_depth, ground_truth_depth, mask)
+  + mesh_self_consistency(mesh)
+}
+
+class ViewSynthesizer {
+  + generate_synthetic_views(image, depth, mask, num_views)
+  + save_synthetic_views(synthetic_views, output_dir, img_name)
+}
+
+Pipeline3D --> ViewSynthesizer : uses
+Pipeline3D --> EvaluationMetrics : uses
+
+@enduml

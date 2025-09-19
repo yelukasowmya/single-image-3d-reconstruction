@@ -4,7 +4,7 @@ A comprehensive pipeline for transforming 2D images into textured 3D models usin
 
 ## Project Overview
 
-This project implements an end-to-end pipeline for reconstructing 3D models from single 2D images. The system utilizes multiple state-of-the-art computer vision techniques including object segmentation, depth estimation, synthetic view generation, voxel grid creation, and texture mapping to create detailed 3D representations from ordinary 2D photographs.
+This project implements an end-to-end pipeline for reconstructing 3D models from single 2D image. The system utilizes multiple state-of-the-art computer vision techniques including object segmentation, depth estimation, synthetic view generation, voxel grid creation, and texture mapping to create detailed 3D representations from ordinary 2D photograph.
 
 ### Project Motivation
 
